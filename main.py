@@ -1,18 +1,17 @@
 import pandas as pd
 import numpy as np
 
-
-df = pd.read_csv(r'./healthcare-dataset-stroke-data.csv', index_col='id')
-
+path = r'./healthcare-dataset-stroke-data.csv'
+df = pd.read_csv(path, index_col='id')
 
 for idx in list(df.index):
-
     gender = df.loc[idx, 'gender']
     ever_married = df.loc[idx, 'ever_married']
     work_type = df.loc[idx, 'work_type']
     residence_type = df.loc[idx, 'Residence_type']
     smoking_status = df.loc[idx, 'smoking_status']
     bmi = df.loc[idx, 'bmi']
+
     if gender == 'Male':
         df.loc[idx, 'gender'] = 0
     elif gender == 'Female':
@@ -53,4 +52,6 @@ for idx in list(df.index):
     else:
         df.loc[idx, 'smoking_status'] = 3
 
-df.to_csv(path_or_buf=r'./healthcare-dataset-stroke-data-adapter.csv', header=None)
+
+df.to_csv(path_or_buf=r'./healthcare-dataset-stroke-data-adapter.csv',
+          header=None, index=False)
